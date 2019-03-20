@@ -65,25 +65,4 @@ public class CalculateImplTest {
         Expression expression = (Expression) result.getResult();
         Assert.assertEquals(300,expression.getResult(),0.1);
     }
-/*
-    @Test
-    public void getDiv() {
-        Expression result = calculate.getResult(new Expression(100, 0), TypeOperation.DIV);
-        Assert.assertEquals(Double.POSITIVE_INFINITY, result.getResult(),0.1);
-    }
-    @Test
-    public void getAdd() {
-        Expression result = calculate.getResult(new Expression(100, 50), TypeOperation.ADD);
-        Assert.assertEquals(150, result.getResult(),0.1);
-    }
-    @Test
-    public void getSub() {
-        Expression result = calculate.getResult(new Expression(100, 40), TypeOperation.SUB);
-        Assert.assertEquals(60, result.getResult(),0.1);
-    }
-    @Test
-    public void getMul() {
-        Expression result = calculate.getResult(new Expression(100, 2), TypeOperation.MUL);
-        Assert.assertEquals(200, result.getResult(),0.1);
-    }*/
 }

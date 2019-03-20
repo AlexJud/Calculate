@@ -7,6 +7,6 @@ import ru.calculate.model.TypeOperation;
 
 @Service
 public interface Calculate {
-//    Expression getResult(Expression expression, TypeOperation type);
+
     DeferredResult<Expression> getResultAsync(Expression expression, TypeOperation type);
 }

@@ -7,7 +7,6 @@ import indev.test.job.calc.ICalc;
 import indev.test.job.calc.ThreadCalc;
 import org.springframework.stereotype.Component;
 import ru.calculate.model.TypeOperation;
-
 import java.util.concurrent.*;
 
 
@@ -16,8 +15,6 @@ import java.util.concurrent.*;
 public class CalculateImpl implements Calculate {
 
     private static ExecutorService service = Executors.newSingleThreadExecutor();
-
-
 
     public DeferredResult<Expression> getResultAsync(Expression expression, TypeOperation type) {
         DeferredResult<Expression> deferredResult = new DeferredResult<>();
@@ -37,7 +34,7 @@ public class CalculateImpl implements Calculate {
                         expression.setResult(calc.Divide(expression.getA(), expression.getB()));
                         break;
                     case SUB:
-                        expression.setResult(expression.getA() - expression.getB());
+                        expression.setResult(calc.Add(expression.getA(), -1 * expression.getB()));
                         break;
                     default:
                         log.info("case DEFAULT operation " + expression.toString()+ " type: " + type);
@@ -57,37 +54,5 @@ public class CalculateImpl implements Calculate {
 
         return deferredResult;
     }
-
-
-   /* public Expression getResult(Expression expression, TypeOperation type) {
-
-        Callable<Double> task = () -> {
-            log.trace("case operation " + expression.toString() + " type: " + type);
-            ICalc calc = ThreadCalc.Instance();
-            try {
-                switch (type) {
-                    case ADD:
-                        return calc.Add(expression.getA(), expression.getB());
-                    case MUL:
-                        return calc.Multiply(expression.getA(), expression.getB());
-                    case DIV:
-                        return calc.Divide(expression.getA(), expression.getB());
-                    case SUB:
-                        return expression.getA() - expression.getB();
-                    default:
-                        log.info("case DEFAULT operation " + expression.toString()+ " type: " + type);
-                }
-            } catch (Exception e) {
-                log.warn("Exception " + e.getMessage());
-            }
-            return 0D;
-        };
-        try {
-            expression.setResult(service.submit(task).get());
-        } catch (Exception e) {
-            log.warn("Exception " + e.getMessage());
-        }
-        return expression;
-    }*/
 
 }
